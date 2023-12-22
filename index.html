@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+        <link href="https://fonts.cdnfonts.com/css/christmas-5" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Mountains of Christmas' rel='stylesheet'>
+        <link href="https://fonts.cdnfonts.com/css/christmas-classica" rel="stylesheet">
+	    <script src="./script.js"></script>
+    </head>
+    <body onload="onclick_classifica(); onload()">
+        <video autoplay muted loop>
+            <source src="video1_2.mp4" type="video/mp4">
+        </video>
+        
+        <div id="myModal">
+            <div id="modal_body" class="modal-content">
+                <div style="display: flex; flex-direction: row;">
+                    <p style="flex: 20; justify-content: center; display: flex; " id="titolo-modal"></p>          
+                    <span class="close" onclick="closeModal()" style="flex: 1;">×</span>
+                </div>
+              <div class="modal_body" id="descrizione">
+                  <p>Il gioco Paper & Water consiste</p>
+                  <p>nel trasportare un bicchiere pieno d'acqua</p>
+                  <p>riallotolando un rotolo di carta igenica.</p>
+                  <p>Il rotolo viene srotolato e il bicchiere viene</p>
+                  <p>posizionato alla sua estremità.</p>
+                  <p>Il concorrente riavvolgendo il rotolo dovrà avvivinare il</p>
+                  <p>più possibile il bicchiere a se senza che la carta si strappi</p>
+                  <p>a causa dell'acqua uscita dal bicchiere durante il movimento.</p>
+                  <p>Chi avvicina di più il bicchiere a se guadagna 1 punto.</p>
+              </div>
+            </div>
+        </div>
+        <div class="pricipal_max">
+
+            <div class="title">
+                <p class="christmas">CIPSMAS</p>
+            </div>
+            
+            <div class="principal">
+                <div class="half left">
+                    <!-- Contenuto della metà sinistra -->
+                    <div class="star-five"></div>
+                    <div class="liv"><div class="circle water-green"></div><div class="triangle-up"></div><div class="circle purple"></div></div>
+                    <div class="liv"><div class="circle blue"></div><div class="trapezioIs scuro" style="width: 60px; color: darkviolet;"><p class="class"></p></div><div class="circle dark-violet"></div></div>
+                    <div class="liv"><div class="circle dark-violet"></div><div class="trapezioIs chiaro" style="width: 90px; color:#30C1FD;"><p class="class"></p></div><div class="circle light-blue"></div></div>
+                    <div class="liv"><div class="circle rosso-rosato"></div><div class="trapezioIs scuro" style="width: 120px; color: red;"><p class="class"></p></div><div class="circle red"></div></div>
+                    <div class="liv"><div class="circle light-green"></div><div class="trapezioIs chiaro" style="width: 150px; color: violet;"><p class="class"></p></div><div class="circle green"></div></div>
+                    <div class="liv"><div class="circle yellow"></div><div class="trapezioIs scuro" style="width: 180px; color:#FF32B5;"><p class="class"></p></div><div class="circle purple"></div></div>
+                    <div class="liv"><div class="circle water-green"></div><div class="trapezioIs chiaro" style="width: 210px; color:#31fff6"><p class="class"></p></div><div class="circle water-green"></div></div>
+                    <div class="liv"><div class="circle purple"></div><div class="trapezioIs scuro" style="width: 240px; color:yellow;"><p class="class"></p></div><div class="circle yellow"></div></div>
+                    <div class="liv"><div class="circle green"></div><div class="trapezioIs chiaro" style="width: 270px; color:orange"><p class="class"></p></div><div class="circle light-green"></div></div>
+                    <div class="liv"><div class="circle red"></div><div class="trapezioIs scuro" style="width: 300px; color:rgb(255, 0, 85);"><p class="class"></p></div><div class="circle rosso-rosato"></div></div>
+                    <div class="liv"><div class="circle light-blue"></div><div class="trapezioIs chiaro" style="width: 330px; color: violet"><p class="class"></p></div><div class="circle dark-violet"></div></div>
+                    <div class="liv"><div class="circle dark-violet"></div><div class="trapezioIs scuro" style="width: 360px; color:#30C1FD"><p class="class"></p></div><div class="circle blue"></div></div>
+                    <div class="rectangle"></div>
+                </div>
+            
+                <div class="half right">
+                    <table>
+                        <tr>
+                            <td><button class="button candy_stick" onclick="openModal('candy_stick.png','Candy Stick')">Candy Stick</button></td>
+                            <td><button class="button candy_straw" onclick="openModal('candy_straw.png','Candy Straw')">Candy Straw</button></td>
+                            <td><button class="button chopstick" onclick="openModal('chopstick.png','Chopstick & Marshmallow')">Chopstick & Marshmallow</button></td>
+                            <td><button class="button paper" onclick="openModal('paper_water.png','Paper & Water')">Paper & Water</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="button candles" onclick="openModal('candles.png','Candles')">Candles</button></td>
+                            <td><button class="button cards" onclick="openModal('cards.png','Cards')">Cards</button></td>
+                            <td><button class="button cookies" onclick="openModal('cookies.png','Cookies')">Cookies</button></td>
+                            <td><button class="button cup_ball" onclick="openModal('cup_ball.png','Cup & Ball')">Cup & Ball</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="button cups_marshmallow" onclick="openModal('cups_marshmallow.png','Cups & Marshmallows')">Cups & Marshmallows</button></td>
+                            <td><button class="button cups_sheets" onclick="openModal('cups_sheets.png','Cups & Sheets')">Cups & Sheets</button></td>
+                            <td><button class="button dices" onclick="openModal('dices.png','Dices on Wooden stick')">Dices on Wooden stick</button></td>
+                            <td><button class="button flour_egg" onclick="openModal('flour_egg.png','Egg on flour')">Egg on flour</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="button karaoke" onclick="openModal('karaoke.png','Continue the song')">Continue the song</button></td>
+                            <td><button class="button legs_ball" onclick="openModal('legs_ball.png','Legs & Balls')">Legs & Balls</button></td>
+                            <td><button class="button nuts" onclick="openModal('nuts.png','Nuts & Stick')">Nuts & Stick</button></td>
+                            <td><button class="button twerk" onclick="openModal('twerk.png','Shake your pelvis')">Shake your pelvis</button></td>
+                        </tr>
+                    </table>
+                    <div style="display: flex; gap: 80px">
+                        <button class="nuovo-gioco christmas" onclick="reset()">RESET</button>
+                        <button class="nuovo-gioco christmas" onclick="seleziona_gioco()">NUOVO GIOCO</button>
+                        <p id="counter" style="font-size: 25px;margin-block-start: 7px; font-weight: bold; font-family:cursive; color:white"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
