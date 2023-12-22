@@ -277,5 +277,5 @@ function reset(){
   sessionStorage.removeItem('classifica');
   sessionStorage.removeItem('giochi');
   giochi=giochi_stat
-  window.open("index.html",'_self')
+  window.open("./",'_self')
 }
