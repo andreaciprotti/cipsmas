@@ -347,3 +347,16 @@ video {
     box-shadow: 0 0 0 4px yellow;
     transition: 0.7s;
   }
+
+  @media (max-width: 700px) {
+    video{
+        top: 16%;
+    }
+    .title{
+        position: relative;
+        left: 153%;
+    }
+    .modal-content{
+        height: 20%;
+    }
+}
