@@ -14,7 +14,16 @@
         <video autoplay muted loop>
             <source src="video1_2.mp4" type="video/mp4">
         </video>
-        
+        <div class="modal-overlay" id="modal_finale">
+            
+            <div style="display: flex;flex-direction: column;" class="modal christmas-theme">
+                <div style="display: flex; flex-direction: row;">
+                    <span class="close" onclick="closeModalFinale()" style="margin-left: 100%;">×</span>
+                </div>
+                <h2>I CIPSMAS 2024 sono giunti al termine</h2>
+                <p >Andiamo a scoprire i vincitori!</p>
+                </div>
+        </div>
         <div id="myModal">
             <div id="modal_body" class="modal-content">
                 <div style="display: flex; flex-direction: row;">
@@ -59,6 +68,21 @@
                     <div class="rectangle"></div>
                 </div>
                 <div class="quiz-container" id="container-domande">
+                    <div class="modal-overlay" id="modalOverlay">
+                        <div style="display: flex;flex-direction: column;" class="modal christmas-theme">
+                            <h2>Risposta corretta</h2>
+                            <p id="quizResponse">This is the answer to your question!</p>
+                            <button style="align-self: center;" class="nuovo-gioco christmas" onclick="closeModalAnswer()">VAI AL GIOCO</button>
+                        </div>
+                    </div>
+
+                    <div class="modal-overlay" id="cipquiz">
+                        <div style="display: flex;flex-direction: column;" class="modal christmas-theme">
+                            <h2>Momento CipQuiz</h2>
+                            <p id="quizResponse">Dai la risposta giusta per primo e accumula punti!</p>
+                            <button style="align-self: center; width: auto;" class="nuovo-gioco christmas" onclick="closeModalCipQuiz()">VAI ALLA DOMANDA</button>
+                        </div>
+                    </div>
                     <div id="domanda" class="question-box">
                     </div>
                     <div class="options" id="options">
@@ -75,7 +99,7 @@
                     <table>
                         <tr>
                             <td><button class="button candy_straw" onclick="openModal('candy_straw.png','Candy Straw')">Candy Straw</button></td>
-                            <td><button class="button cups_and_ballons" onclick="openModal('cups_and_ballons.png','Cups and Ballons')">Cups and Ballons</button></td>
+                            <td><button class="button cups_and_balloons" onclick="openModal('cups_and_balloons.png','Cups and Balloons')">Cups and Balloons</button></td>
                             <td><button class="button cups_and_blowers" onclick="openModal('cups_and_blowers.png','Cups and Blowers')">Cups and Blowers</button></td>
                         </tr>
                         <tr>
@@ -96,7 +120,7 @@
                     </table>
                     <div style="display: flex; gap: 80px">
                         <button class="nuovo-gioco christmas" onclick="reset()">RESET</button>
-                        <button class="nuovo-gioco christmas" onclick="seleziona_gioco()">NUOVO GIOCO</button>
+                        <button class="nuovo-gioco christmas" onclick="seleziona_gioco(true)">NUOVO GIOCO</button>
                         <p id="counter" style="font-size: 25px;margin-block-start: 7px; font-weight: bold; font-family:cursive; color:white"></p>
                     </div>
                 </div>

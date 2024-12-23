@@ -32,7 +32,7 @@ const giochi_stat=[
   ['legs_ball.png','Legs & Balls'],
   ['nuts.png','Nuts & Straws'],
   ['twerk.png','Shake your pelvis'],
-  ['cups_and_ballons.png','Cups and Ballons'],
+  ['cups_and_balloons.png','Cups and Balloons'],
   ['cups_and_blowers.png','Cups and Blowers'],
   ['straw_and_blowers.png','Straw and Blowers']
 ]
@@ -159,27 +159,20 @@ descrizioni["twerk"]="<p>Il gioco Shake your pelvis consiste</p>\
 <p>Al via il concorrente dovrà cercare di far uscire più palline possibile</p>\
 <p>dalla scatola esclusivamente muovendo il bacino.</p>\
 <p>Chi svuota la scatola più velocemente guadagna 1 punto.</p>"
-descrizioni["cups_and_blowers"]="<p>Il gioco Shake your pelvis consiste</p>\
-<p>nel dover svuotare una scatola piena di palline.</p>\
-<p>A ogni concorrente viene legata una scatola contenente delle</p>\
-<p>palline all'altezza del bacino sul lato posteriore.</p>\
-<p>Al via il concorrente dovrà cercare di far uscire più palline possibile</p>\
-<p>dalla scatola esclusivamente muovendo il bacino.</p>\
-<p>Chi svuota la scatola più velocemente guadagna 1 punto.</p>"
-descrizioni["straw_and_blowers"]="<p>Il gioco Shake your pelvis consiste</p>\
-<p>nel dover svuotare una scatola piena di palline.</p>\
-<p>A ogni concorrente viene legata una scatola contenente delle</p>\
-<p>palline all'altezza del bacino sul lato posteriore.</p>\
-<p>Al via il concorrente dovrà cercare di far uscire più palline possibile</p>\
-<p>dalla scatola esclusivamente muovendo il bacino.</p>\
-<p>Chi svuota la scatola più velocemente guadagna 1 punto.</p>"
-descrizioni["cups_and_ballons"]="<p>Il gioco Shake your pelvis consiste</p>\
-<p>nel dover svuotare una scatola piena di palline.</p>\
-<p>A ogni concorrente viene legata una scatola contenente delle</p>\
-<p>palline all'altezza del bacino sul lato posteriore.</p>\
-<p>Al via il concorrente dovrà cercare di far uscire più palline possibile</p>\
-<p>dalla scatola esclusivamente muovendo il bacino.</p>\
-<p>Chi svuota la scatola più velocemente guadagna 1 punto.</p>"
+descrizioni["cups_and_blowers"]="<p>Il gioco Cups and Blowers consiste</p>\
+<p>nel dover far cadere tutte le palline posizionate</p>\
+<p>sul fondo di un bicchiere di plastica rovesciato</p>\
+<p>utilizzando una trombetta di carnevale e successivamente</p>\
+<p>impilare tutti i bicchieri nel minor tempo possibile.</p>\
+<p>Chi impiega meno tempo vince.</p>"
+descrizioni["straw_and_blowers"]="<p>Il gioco Straw and Blowers si gioca a coppie.</p>\
+<p>Ogni coppia deve scambiarsi una cannuccia utilizzando</p>\
+<p>delle trombette di carnevale senza farla cadere.</p>\
+<p>La coppia che completa per prima la sfida vince.</p>"
+descrizioni["cups_and_balloons"]="<p>Il gioco Cups and Balloons consiste</p>\
+<p>nel dover impilare tutti i bicchieri nel minor tempo possibile.</p>\
+<p>I bicchieri si possono spostare solo gonfiandoci dentro un palloncino</p>\
+<p>Chi impila per primo i bicchieri vince.</p>"
 document.addEventListener('keydown', function(event) {
     if (event.key === 'i' || event.key === 'I') {
         if (isIPressed) {
@@ -258,35 +251,57 @@ function aggiorna_class(){
     }
 }
 
-function seleziona_gioco(){
-  document.getElementById("container-domande").style.display="none"
-  if((Math.floor(1 + Math.random()*10))>=3){
-    domanda = Math.floor(Math.random()*domande.length)
-    console.log(domande[domanda])
-    mostra_domanda(domande[domanda])
-    domande.splice(domanda,1)
-    sessionStorage['domande'] = JSON.stringify(domande)
-  }
+function seleziona_gioco(dom){
   if(giochi.length==0){
-    alert("I giochi sono finiti, proclamate il vincitore!")
+    document.getElementById("modal_finale").classList.add("show")
   }
   else{
-    var indice=Math.floor(Math.random()*giochi.length)
-    //console.log("eletto "+indice)
-    var gioco=giochi[indice]
-    giochi.splice(indice,1)
-    sessionStorage['giochi']=JSON.stringify(giochi)
-    //giochi.forEach((el)=>{console.log(el)})
-    document.getElementById('counter').innerHTML=(giochi_stat.length-giochi.length)+"/12 GIOCHI FATTI"
-    openModal(gioco[0],gioco[1])
+    if(dom){
+      document.getElementById("container-domande").style.display="none"
+      if((Math.floor(1 + Math.random()*10))>=5){
+        domanda = Math.floor(Math.random()*domande.length)
+        console.log(domande[domanda])
+        mostra_domanda(domande[domanda])
+        domande.splice(domanda,1)
+        sessionStorage['domande'] = JSON.stringify(domande)
+      }
+      else{
+        var indice=Math.floor(Math.random()*giochi.length)
+        //console.log("eletto "+indice)
+        var gioco=giochi[indice]
+        giochi.splice(indice,1)
+        sessionStorage['giochi']=JSON.stringify(giochi)
+        //giochi.forEach((el)=>{console.log(el)})
+        document.getElementById('counter').innerHTML=(giochi_stat.length-giochi.length)+"/12 GIOCHI FATTI"
+        openModal(gioco[0],gioco[1])
+      }
+    }
+    else{
+      var indice=Math.floor(Math.random()*giochi.length)
+      //console.log("eletto "+indice)
+      var gioco=giochi[indice]
+      giochi.splice(indice,1)
+      sessionStorage['giochi']=JSON.stringify(giochi)
+      //giochi.forEach((el)=>{console.log(el)})
+      document.getElementById('counter').innerHTML=(giochi_stat.length-giochi.length)+"/12 GIOCHI FATTI"
+      openModal(gioco[0],gioco[1])
+    }
   }
 }
 
 function mostra_domanda(domanda){
   document.getElementById("domanda").innerHTML = domanda["DOMANDA"]
-  document.getElementById("Risposta1").style.display = "block"
-  document.getElementById("Risposta2").style.display = "block"
-    document.getElementById("Risposta3").style.display = "block"
+  document.getElementById("Risposta1").style.display = "none"
+  document.getElementById("Risposta2").style.display = "none"
+  document.getElementById("Risposta3").style.display = "none"
+  
+  const myDiv = document.getElementById('domanda');
+  const clonedDiv = myDiv.cloneNode(true);
+  myDiv.parentNode.replaceChild(clonedDiv, myDiv)
+  
+  document.getElementById("domanda").addEventListener('click',()=>{
+    showModalAnswer(domanda["RISPOSTA 1"])
+  })
   if (domanda["RISPOSTA 3"] != undefined){
     document.getElementById("Risposta1").innerHTML = domanda["RISPOSTA 1"]
     document.getElementById("Risposta2").innerHTML = domanda["RISPOSTA 2"]
@@ -295,19 +310,11 @@ function mostra_domanda(domanda){
   else if (domanda["RISPOSTA 2"] != undefined){
     document.getElementById("Risposta1").innerHTML = domanda["RISPOSTA 1"]
     document.getElementById("Risposta2").innerHTML = domanda["RISPOSTA 2"]
-    document.getElementById("Risposta3").style.display = "none"
+    document.getElementById("Risposta3").innerHTML = ""
   }
   else{
-    const myDiv = document.getElementById('domanda');
-    const clonedDiv = myDiv.cloneNode(true);
-    myDiv.parentNode.replaceChild(clonedDiv, myDiv)
-    
-    document.getElementById("domanda").addEventListener('click',()=>{
-      alert("La risposta giusta è "+domanda["RISPOSTA 1"])
-    })
-    document.getElementById("Risposta1").style.display = "none"
-    document.getElementById("Risposta2").style.display = "none"
-    document.getElementById("Risposta3").style.display = "none"
+    document.getElementById("Risposta2").innerHTML = ""
+    document.getElementById("Risposta3").innerHTML = ""
   }
 
   const container = document.getElementById('options');
@@ -319,8 +326,41 @@ function mostra_domanda(domanda){
   // Re-append gli elementi mescolati nel contenitore
   elements.forEach(element => container.appendChild(element));
 
+  document.getElementById("cipquiz").classList.add('show');
   document.getElementById("container-domande").style.display="block"
+  document.getElementById("domanda").style.display="none"
 }
+
+function closeModalFinale() {
+  document.getElementById('modal_finale').classList.remove("show");
+}
+
+function closeModalCipQuiz(){
+  if (document.getElementById("Risposta3").innerHTML != ""){
+    document.getElementById("Risposta1").style.display = "block"
+    document.getElementById("Risposta2").style.display = "block"
+    document.getElementById("Risposta3").style.display = "block"
+  }
+  else if (document.getElementById("Risposta2").innerHTML != ""){
+    document.getElementById("Risposta1").style.display = "block"
+    document.getElementById("Risposta2").style.display = "block"
+  }
+
+  document.getElementById("cipquiz").classList.remove('show');
+  document.getElementById("domanda").style.display="block"
+}
+
+function showModalAnswer(response) {
+  document.getElementById('quizResponse').innerText = response;
+  document.getElementById('modalOverlay').classList.add('show');
+}
+
+function closeModalAnswer() {
+  document.getElementById('modalOverlay').classList.remove('show');
+  document.getElementById("container-domande").style.display="none"
+  seleziona_gioco(false)
+}
+
 async function leggi_domande() {
   const filePath = './Domande_quiz.xlsx';
 
