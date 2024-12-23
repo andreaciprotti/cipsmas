@@ -7,7 +7,8 @@
         <link href="https://fonts.cdnfonts.com/css/christmas-5" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Mountains of Christmas' rel='stylesheet'>
         <link href="https://fonts.cdnfonts.com/css/christmas-classica" rel="stylesheet">
-	    <script src="./script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+        <script src="./script.js"></script>
     </head>
     <body onload="onclick_classifica(); onload()">
         <video autoplay muted loop>
@@ -40,7 +41,7 @@
             </div>
             
             <div class="principal">
-                <div class="half left">
+                <div class="left">
                     <!-- Contenuto della metà sinistra -->
                     <div class="star-five"></div>
                     <div class="liv"><div class="circle water-green"></div><div class="triangle-up"></div><div class="circle purple"></div></div>
@@ -57,29 +58,37 @@
                     <div class="liv"><div class="circle dark-violet"></div><div class="trapezioIs scuro" style="width: 360px; color:#30C1FD"><p class="class"></p></div><div class="circle blue"></div></div>
                     <div class="rectangle"></div>
                 </div>
+                <div class="quiz-container" id="container-domande">
+                    <div id="domanda" class="question-box">
+                    </div>
+                    <div class="options" id="options">
+                        <button id="Risposta1" onclick="alert('Esatto!')"></button>
+                        <button id="Risposta2" onclick="alert('Sbagliato!')"></button>
+                        <button id="Risposta3"onclick="alert('Sbagliato!')"></button>
+                    </div>
+                </div>
+                <div class="center">
+
+                </div>
             
-                <div class="half right">
+                <div class="right">
                     <table>
                         <tr>
-                            <td><button class="button candy_stick" onclick="openModal('candy_stick.png','Candy Stick')">Candy Stick</button></td>
                             <td><button class="button candy_straw" onclick="openModal('candy_straw.png','Candy Straw')">Candy Straw</button></td>
-                            <td><button class="button chopstick" onclick="openModal('chopstick.png','Chopstick & Marshmallow')">Chopstick & Marshmallow</button></td>
-                            <td><button class="button paper" onclick="openModal('paper_water.png','Paper & Water')">Paper & Water</button></td>
+                            <td><button class="button cups_and_ballons" onclick="openModal('cups_and_ballons.png','Cups and Ballons')">Cups and Ballons</button></td>
+                            <td><button class="button cups_and_blowers" onclick="openModal('cups_and_blowers.png','Cups and Blowers')">Cups and Blowers</button></td>
                         </tr>
                         <tr>
-                            <td><button class="button candles" onclick="openModal('candles.png','Candles')">Candles</button></td>
-                            <td><button class="button cards" onclick="openModal('cards.png','Cards')">Cards</button></td>
                             <td><button class="button cookies" onclick="openModal('cookies.png','Cookies')">Cookies</button></td>
                             <td><button class="button cup_ball" onclick="openModal('cup_ball.png','Cup & Ball')">Cup & Ball</button></td>
+                            <td><button class="button straw_and_blowers" onclick="openModal('straw_and_blowers.png','Straw and Blowers')">Straw and Blowers</button></td>
                         </tr>
                         <tr>
-                            <td><button class="button cups_marshmallow" onclick="openModal('cups_marshmallow.png','Cups & Marshmallows')">Cups & Marshmallows</button></td>
                             <td><button class="button cups_sheets" onclick="openModal('cups_sheets.png','Cups & Sheets')">Cups & Sheets</button></td>
                             <td><button class="button dices" onclick="openModal('dices.png','Dices on Wooden stick')">Dices on Wooden stick</button></td>
-                            <td><button class="button flour_egg" onclick="openModal('flour_egg.png','Egg on flour')">Egg on flour</button></td>
+                            <td><button class="button karaoke" onclick="openModal('karaoke.png','Continue the song')">Continue the song</button></td>
                         </tr>
                         <tr>
-                            <td><button class="button karaoke" onclick="openModal('karaoke.png','Continue the song')">Continue the song</button></td>
                             <td><button class="button legs_ball" onclick="openModal('legs_ball.png','Legs & Balls')">Legs & Balls</button></td>
                             <td><button class="button nuts" onclick="openModal('nuts.png','Nuts & Stick')">Nuts & Stick</button></td>
                             <td><button class="button twerk" onclick="openModal('twerk.png','Shake your pelvis')">Shake your pelvis</button></td>

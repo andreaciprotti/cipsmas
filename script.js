@@ -21,25 +21,22 @@ var classifica=[]
 var isIPressed = false;
 var isPPressed = false;
 var descrizioni={}
+var domande = []
 const giochi_stat=[
-  ['candy_stick.png','Candy Stick'],
   ['candy_straw.png','Candy Straw'],
-  ['chopstick.png','Chopstick & Marshmallow'],
-  ['paper_water.png','Paper & Water'],
-  ['candles.png','Candles'],
-  ['cards.png','Cards'],
   ['cookies.png','Cookies'],
   ['cup_ball.png','Cup & Ball'],
-  ['cups_marshmallow.png','Cups & Marshmallows'],
   ['cups_sheets.png','Cups & Sheets'],
   ['dices.png','Dices on Wooden stick'],
-  ['flour_egg.png','Egg on flour'],
   ['karaoke.png','Continue the song'],
   ['legs_ball.png','Legs & Balls'],
   ['nuts.png','Nuts & Straws'],
-  ['twerk.png','Shake your pelvis']
+  ['twerk.png','Shake your pelvis'],
+  ['cups_and_ballons.png','Cups and Ballons'],
+  ['cups_and_blowers.png','Cups and Blowers'],
+  ['straw_and_blowers.png','Straw and Blowers']
 ]
-var giochi=giochi_stat;
+var giochi=[...giochi_stat];
 descrizioni["candy_stick"]="<p>Il gioco Candy Stick consiste nel</p>\
 <p>trasportare più velocemente possibile delle</p>\
 <p>caramelle a bastonico da un posto all'altro.</p>\
@@ -162,6 +159,27 @@ descrizioni["twerk"]="<p>Il gioco Shake your pelvis consiste</p>\
 <p>Al via il concorrente dovrà cercare di far uscire più palline possibile</p>\
 <p>dalla scatola esclusivamente muovendo il bacino.</p>\
 <p>Chi svuota la scatola più velocemente guadagna 1 punto.</p>"
+descrizioni["cups_and_blowers"]="<p>Il gioco Shake your pelvis consiste</p>\
+<p>nel dover svuotare una scatola piena di palline.</p>\
+<p>A ogni concorrente viene legata una scatola contenente delle</p>\
+<p>palline all'altezza del bacino sul lato posteriore.</p>\
+<p>Al via il concorrente dovrà cercare di far uscire più palline possibile</p>\
+<p>dalla scatola esclusivamente muovendo il bacino.</p>\
+<p>Chi svuota la scatola più velocemente guadagna 1 punto.</p>"
+descrizioni["straw_and_blowers"]="<p>Il gioco Shake your pelvis consiste</p>\
+<p>nel dover svuotare una scatola piena di palline.</p>\
+<p>A ogni concorrente viene legata una scatola contenente delle</p>\
+<p>palline all'altezza del bacino sul lato posteriore.</p>\
+<p>Al via il concorrente dovrà cercare di far uscire più palline possibile</p>\
+<p>dalla scatola esclusivamente muovendo il bacino.</p>\
+<p>Chi svuota la scatola più velocemente guadagna 1 punto.</p>"
+descrizioni["cups_and_ballons"]="<p>Il gioco Shake your pelvis consiste</p>\
+<p>nel dover svuotare una scatola piena di palline.</p>\
+<p>A ogni concorrente viene legata una scatola contenente delle</p>\
+<p>palline all'altezza del bacino sul lato posteriore.</p>\
+<p>Al via il concorrente dovrà cercare di far uscire più palline possibile</p>\
+<p>dalla scatola esclusivamente muovendo il bacino.</p>\
+<p>Chi svuota la scatola più velocemente guadagna 1 punto.</p>"
 document.addEventListener('keydown', function(event) {
     if (event.key === 'i' || event.key === 'I') {
         if (isIPressed) {
@@ -189,12 +207,12 @@ document.addEventListener('keydown', function(event) {
 
 
 function onclick_classifica() {
-    var elements = document.getElementsByClassName('trapezioIs');
+    /*var elements = document.getElementsByClassName('trapezioIs');
 
     for (var i = 0; i < elements.length; i++) {
         elements[i].id = i;
         elements[i].setAttribute("onclick","gestisci_class("+i+")")
-    }
+    }*/
 }
 
 function gestisci_class(id) {
@@ -241,28 +259,113 @@ function aggiorna_class(){
 }
 
 function seleziona_gioco(){
+  document.getElementById("container-domande").style.display="none"
+  if((Math.floor(1 + Math.random()*10))>=3){
+    domanda = Math.floor(Math.random()*domande.length)
+    console.log(domande[domanda])
+    mostra_domanda(domande[domanda])
+    domande.splice(domanda,1)
+    sessionStorage['domande'] = JSON.stringify(domande)
+  }
   if(giochi.length==0){
     alert("I giochi sono finiti, proclamate il vincitore!")
   }
   else{
     var indice=Math.floor(Math.random()*giochi.length)
-    console.log("eletto "+indice)
+    //console.log("eletto "+indice)
     var gioco=giochi[indice]
     giochi.splice(indice,1)
     sessionStorage['giochi']=JSON.stringify(giochi)
     //giochi.forEach((el)=>{console.log(el)})
-    document.getElementById('counter').innerHTML=(giochi_stat.length-giochi.length)+"/16 GIOCHI FATTI"
+    document.getElementById('counter').innerHTML=(giochi_stat.length-giochi.length)+"/12 GIOCHI FATTI"
     openModal(gioco[0],gioco[1])
   }
 }
 
+function mostra_domanda(domanda){
+  document.getElementById("domanda").innerHTML = domanda["DOMANDA"]
+  document.getElementById("Risposta1").style.display = "block"
+  document.getElementById("Risposta2").style.display = "block"
+    document.getElementById("Risposta3").style.display = "block"
+  if (domanda["RISPOSTA 3"] != undefined){
+    document.getElementById("Risposta1").innerHTML = domanda["RISPOSTA 1"]
+    document.getElementById("Risposta2").innerHTML = domanda["RISPOSTA 2"]
+    document.getElementById("Risposta3").innerHTML = domanda["RISPOSTA 3"]
+  }
+  else if (domanda["RISPOSTA 2"] != undefined){
+    document.getElementById("Risposta1").innerHTML = domanda["RISPOSTA 1"]
+    document.getElementById("Risposta2").innerHTML = domanda["RISPOSTA 2"]
+    document.getElementById("Risposta3").style.display = "none"
+  }
+  else{
+    const myDiv = document.getElementById('domanda');
+    const clonedDiv = myDiv.cloneNode(true);
+    myDiv.parentNode.replaceChild(clonedDiv, myDiv)
+    
+    document.getElementById("domanda").addEventListener('click',()=>{
+      alert("La risposta giusta è "+domanda["RISPOSTA 1"])
+    })
+    document.getElementById("Risposta1").style.display = "none"
+    document.getElementById("Risposta2").style.display = "none"
+    document.getElementById("Risposta3").style.display = "none"
+  }
+
+  const container = document.getElementById('options');
+  const elements = Array.from(container.children);
+
+  // Mischia gli elementi casualmente
+  elements.sort(() => Math.random() - 0.5);
+
+  // Re-append gli elementi mescolati nel contenitore
+  elements.forEach(element => container.appendChild(element));
+
+  document.getElementById("container-domande").style.display="block"
+}
+async function leggi_domande() {
+  const filePath = './Domande_quiz.xlsx';
+
+  try {
+    const response = await fetch(filePath);
+
+    if (!response.ok) {
+      throw new Error(`Errore nel caricamento del file: ${response.statusText}`);
+    }
+
+    const data = await response.arrayBuffer();
+    const workbook = XLSX.read(data, { type: 'array' });
+
+    // Ottieni il primo foglio di lavoro
+    const firstSheetName = workbook.SheetNames[0];
+    const worksheet = workbook.Sheets[firstSheetName];
+
+    // Converte il foglio in JSON
+    const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+    // Restituisce i dati
+    return jsonData;
+  } catch (error) {
+    console.error('Errore:', error);
+    throw error; // Propaga l'errore
+  }
+}
+
 function onload(){
-  if(sessionStorage['classifica']!=undefined){
+  /*if(sessionStorage['classifica']!=undefined){
     classifica=JSON.parse(sessionStorage['classifica']);
     aggiorna_class()
   }
   else{
     sessionStorage['classifica']=JSON.stringify(classifica)
+  }*/
+  if(sessionStorage['domande']!=undefined){
+    console.log("qua")
+    domande = JSON.parse(sessionStorage['domande'])
+  }
+  else{
+    leggi_domande().then(dom => {
+      domande = dom
+      sessionStorage['domande']=JSON.stringify(dom)
+    });
   }
   if(sessionStorage['giochi']!=undefined){
     giochi=JSON.parse(sessionStorage['giochi']);
@@ -270,12 +373,13 @@ function onload(){
   else{
     sessionStorage['giochi']=JSON.stringify(giochi)
   }
-  document.getElementById('counter').innerHTML=(giochi_stat.length-giochi.length).toString()+"/16 GIOCHI FATTI"
+  document.getElementById('counter').innerHTML=(giochi_stat.length-giochi.length).toString()+"/12 GIOCHI FATTI"
 }
 
 function reset(){
   sessionStorage.removeItem('classifica');
   sessionStorage.removeItem('giochi');
-  giochi=giochi_stat
+  sessionStorage.removeItem('domande');
+  giochi=[...giochi_stat]
   window.open("./",'_self')
 }
